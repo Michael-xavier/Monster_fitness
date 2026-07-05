@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Monster Fitness - Academia completa com treino pesado, conforto e acompanhamento profissional." />
+  <title>Monster Fitness — Treine como um Monstro</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark mf-navbar fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="20,2 10,20 17,20 16,34 26,16 19,16" fill="#39FF14" stroke="#39FF14" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-text">MONSTER <span class="brand-accent">FITNESS</span></span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Abrir menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="#estrutura">Estrutura</a></li>
+        <li class="nav-item"><a class="nav-link" href="#equipe">Equipe</a></li>
+        <li class="nav-item"><a class="nav-link" href="#planos">Planos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#horarios">Horários</a></li>
+        <li class="nav-item ms-lg-2"><a class="btn btn-outline-accent btn-sm" href="/login">Entrar</a></li>
+        <li class="nav-item ms-lg-1"><a class="btn btn-accent btn-sm" href="/cadastro">Matricule-se</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-section" id="hero">
+  <div class="hero-overlay"></div>
+  <div class="container position-relative h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-lg-7">
+        <p class="hero-eyebrow">Academia completa em Brasília</p>
+        <h1 class="hero-title">TREINE COMO<br/><span class="text-accent">UM MONSTRO</span></h1>
+        <p class="hero-sub">Musculação, funcional, aulas coletivas e acompanhamento personalizado para todos os níveis. Venha fazer parte da família Monster.</p>
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <a href="/cadastro" class="btn btn-accent btn-hero">Começar Agora <i class="bi bi-arrow-right ms-1"></i></a>
+          <a href="#planos" class="btn btn-outline-light btn-hero">Ver Planos</a>
+        </div>
+        <div class="hero-stats d-flex gap-4 mt-5">
+          <div><span class="stat-num">500+</span><span class="stat-label">Alunos ativos</span></div>
+          <div class="stat-divider"></div>
+          <div><span class="stat-num">18</span><span class="stat-label">Professores</span></div>
+          <div class="stat-divider"></div>
+          <div><span class="stat-num">7</span><span class="stat-label">Dias por semana</span></div>
+        </div>
+      </div>
+      <div class="col-lg-5 d-none d-lg-flex justify-content-end">
+        <div class="hero-lightning-wrap">
+          <svg viewBox="0 0 160 280" width="160" height="280" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-lightning">
+            <polygon points="110,10 40,140 80,140 70,270 130,130 90,130" fill="#39FF14" opacity="0.15"/>
+            <polygon points="110,10 40,140 80,140 70,270 130,130 90,130" fill="none" stroke="#39FF14" stroke-width="2"/>
+            <polygon points="110,10 40,140 80,140 70,270 130,130 90,130" fill="#39FF14" opacity="0.6" transform="scale(0.7) translate(35,50)"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <a href="#sobre"><i class="bi bi-chevron-down"></i></a>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="section-dark py-5 py-lg-6" id="sobre">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6">
+        <span class="section-tag">Nossa história</span>
+        <h2 class="section-title">A academia que<br/><span class="text-accent">transforma</span> pessoas</h2>
+        <p class="section-body">A Monster Fitness foi criada com a proposta de unir treino pesado, conforto e acompanhamento profissional em um só lugar. Ficamos conhecidos pelo ambiente moderno, pelos professores atenciosos e pela variedade de atividades para diferentes objetivos.</p>
+        <p class="section-body">O espaço funciona todos os dias da semana e atende alunos iniciantes, intermediários e avançados, com foco em resultados reais.</p>
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <div class="about-badge"><i class="bi bi-thermometer-sun me-2 text-accent"></i>Ambiente climatizado</div>
+          <div class="about-badge"><i class="bi bi-wifi me-2 text-accent"></i>Wi-Fi gratuito</div>
+          <div class="about-badge"><i class="bi bi-music-note me-2 text-accent"></i>Som motivacional</div>
+          <div class="about-badge"><i class="bi bi-phone me-2 text-accent"></i>App de treinos</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="about-card-grid">
+          <div class="about-stat-card">
+            <i class="bi bi-lightning-charge-fill text-accent fs-2"></i>
+            <h3>Hipertrofia</h3>
+            <p>Equipamentos modernos e professores especializados em ganho de massa muscular.</p>
+          </div>
+          <div class="about-stat-card">
+            <i class="bi bi-heart-pulse text-accent fs-2"></i>
+            <h3>Cardio</h3>
+            <p>Esteiras, bikes, escadas e elípticos para seu condicionamento físico.</p>
+          </div>
+          <div class="about-stat-card">
+            <i class="bi bi-people text-accent fs-2"></i>
+            <h3>Coletivas</h3>
+            <p>Fit Dance, Zumba, Funcional, Bike Indoor e muito mais com professores especializados.</p>
+          </div>
+          <div class="about-stat-card">
+            <i class="bi bi-stars text-accent fs-2"></i>
+            <h3>Recovery</h3>
+            <p>Área de recuperação com massagem esportiva e pistola de liberação muscular.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRUTURA -->
+<section class="section-darker py-5 py-lg-6" id="estrutura">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-tag">Infraestrutura</span>
+      <h2 class="section-title">Tudo que você<br/>precisa em <span class="text-accent">um lugar</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="area-card">
+          <div class="area-icon"><i class="bi bi-trophy"></i></div>
+          <h4>Musculação</h4>
+          <ul>
+            <li>Equipamentos modernos</li>
+            <li>Área de peso livre</li>
+            <li>Máquinas guiadas</li>
+            <li>Espaço treino avançado</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="area-card">
+          <div class="area-icon"><i class="bi bi-activity"></i></div>
+          <h4>Cardio</h4>
+          <ul>
+            <li>Esteiras modernas</li>
+            <li>Bicicletas ergométricas</li>
+            <li>Escadas simuladoras</li>
+            <li>Elípticos</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="area-card">
+          <div class="area-icon"><i class="bi bi-people-fill"></i></div>
+          <h4>Aulas Coletivas</h4>
+          <ul>
+            <li>Fit Dance & Zumba</li>
+            <li>Funcional</li>
+            <li>Alongamento</li>
+            <li>Bike Indoor</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="area-card">
+          <div class="area-icon"><i class="bi bi-person-check"></i></div>
+          <h4>Espaço Personal</h4>
+          <ul>
+            <li>Personal exclusivo</li>
+            <li>Treino individualizado</li>
+            <li>Objetivos personalizados</li>
+            <li>Acompanhamento contínuo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="area-card area-card--highlight">
+          <div class="area-icon"><i class="bi bi-lightning-charge"></i></div>
+          <h4>Área Recovery</h4>
+          <ul>
+            <li>Massagem esportiva</li>
+            <li>Pistola liberação muscular</li>
+            <li>Alongamento guiado</li>
+            <li>Espaço pós-treino</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="area-card">
+          <div class="area-icon"><i class="bi bi-bag-heart"></i></div>
+          <h4>Loja Interna</h4>
+          <ul>
+            <li>Suplementos</li>
+            <li>Roupas fitness</li>
+            <li>Bebidas saudáveis</li>
+            <li>Snacks proteicos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section class="section-dark py-5 py-lg-6" id="equipe">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-tag">Nossa equipe</span>
+      <h2 class="section-title">Profissionais<br/><span class="text-accent">dedicados a você</span></h2>
+    </div>
+
+    <h5 class="team-group-label">Direção</h5>
+    <div class="row g-3 mb-5">
+      <div class="col-6 col-md-3">
+        <div class="team-card team-card--director">
+          <div class="team-avatar">LV</div>
+          <div class="team-name">Leonardo Vasconcellos</div>
+          <div class="team-role">Fundador</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="team-card team-card--director">
+          <div class="team-avatar">RF</div>
+          <div class="team-name">Ricardo Ferraz</div>
+          <div class="team-role">Gerente Geral</div>
+        </div>
+      </div>
+    </div>
+
+    <h5 class="team-group-label">Treinadores</h5>
+    <div class="row g-3 mb-5">
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="team-card">
+          <div class="team-avatar">FA</div>
+          <div class="team-name">Felipe Andrade</div>
+          <div class="team-role">Hipertrofia</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="team-card">
+          <div class="team-avatar">BC</div>
+          <div class="team-name">Bruno Carvalho</div>
+          <div class="team-role">Funcional</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="team-card">
+          <div class="team-avatar">MO</div>
+          <div class="team-name">Matheus Oliveira</div>
+          <div class="team-role">Condicionamento</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="team-card">
+          <div class="team-avatar">GM</div>
+          <div class="team-name">Gustavo Martins</div>
+          <div class="team-role">Força</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="team-card">
+          <div class="team-avatar">DR</div>
+          <div class="team-name">Daniel Rocha</div>
+          <div class="team-role">Iniciantes</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="team-card">
+          <div class="team-avatar">VA</div>
+          <div class="team-name">Victor Almeida</div>
+          <div class="team-role">Personal</div>
+        </div>
+      </div>
+    </div>
+
+    <h5 class="team-group-label">Treinadoras</h5>
+    <div class="row g-3 mb-5">
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="team-card team-card--female">
+          <div class="team-avatar">AR</div>
+          <div class="team-name">Amanda Ribeiro</div>
+          <div class="team-role">Treino Feminino</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="team-card team-card--female">
+          <div class="team-avatar">JF</div>
+          <div class="team-name">Júlia Fernandes</div>
+          <div class="team-role">Glúteos & Pernas</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="team-card team-card--female">
+          <div class="team-avatar">CD</div>
+          <div class="team-name">Camila Duarte</div>
+          <div class="team-role">Emagrecimento</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="team-card team-card--female">
+          <div class="team-avatar">BM</div>
+          <div class="team-name">Bianca Monteiro</div>
+          <div class="team-role">Mobilidade</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="team-card team-card--female">
+          <div class="team-avatar">LA</div>
+          <div class="team-name">Larissa Alves</div>
+          <div class="team-role">Aulas Coletivas</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="team-card team-card--female">
+          <div class="team-avatar">FC</div>
+          <div class="team-name">Fernanda Costa</div>
+          <div class="team-role">Personal</div>
+        </div>
+      </div>
+    </div>
+
+    <h5 class="team-group-label">Nutrição & Avaliação</h5>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+        <div class="team-card team-card--health">
+          <div class="team-avatar">IM</div>
+          <div class="team-name">Dra. Isabela Martins</div>
+          <div class="team-role">Nutricionista</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="team-card team-card--health">
+          <div class="team-avatar">RN</div>
+          <div class="team-name">Dr. Rafael Nunes</div>
+          <div class="team-role">Avaliação Física</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section class="section-darker py-5 py-lg-6" id="planos">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-tag">Investimento</span>
+      <h2 class="section-title">Escolha o plano<br/>certo para <span class="text-accent">você</span></h2>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-sm-6 col-lg-4 col-xl">
+        <div class="plan-card">
+          <div class="plan-name">Mensal</div>
+          <div class="plan-desc">Acesso livre à academia, musculação, cardio e aulas coletivas.</div>
+          <ul class="plan-features">
+            <li><i class="bi bi-check2 text-accent me-2"></i>Musculação & cardio</li>
+            <li><i class="bi bi-check2 text-accent me-2"></i>Aulas coletivas</li>
+            <li><i class="bi bi-check2 text-accent me-2"></i>Vestiário completo</li>
+          </ul>
+          <a href="/cadastro" class="btn btn-outline-accent w-100 mt-auto">Contratar</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 col-xl">
+        <div class="plan-card">
+          <div class="plan-name">Trimestral</div>
+          <div class="plan-desc">Valor reduzido e avaliação física inclusa para acompanhar sua evolução.</div>
+          <ul class="plan-features">
+            <li><i class="bi bi-check2 text-accent me-2"></i>Tudo do Mensal</li>
+            <li><i class="bi bi-check2 text-accent me-2"></i>Avaliação física inclusa</li>
+            <li><i class="bi bi-check2 text-accent me-2"></i>Valor reduzido</li>
+          </ul>
+          <a href="/cadastro" class="btn btn-outline-accent w-100 mt-auto">Contratar</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 col-xl">
+        <div class="plan-card">
+          <div class="plan-name">Semestral</div>
+          <div class="plan-desc">Desconto especial e 1 consulta nutricional com nossa especialista.</div>
+          <ul class="plan-features">
+            <li><i class="bi bi-check2 text-accent me-2"></i>Tudo do Trimestral</li>
+            <li><i class="bi bi-check2 text-accent me-2"></i>1 consulta nutricional</li>
+            <li><i class="bi bi-check2 text-accent me-2"></i>Desconto especial</li>
+          </ul>
+          <a href="/cadastro" class="btn btn-outline-accent w-100 mt-auto">Contratar</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 col-xl">
+        <div class="plan-card">
+          <div class="plan-name">Anual</div>
+          <div class="plan-desc">Melhor custo-benefício com avaliações periódicas e acesso completo.</div>
+          <ul class="plan-features">
+            <li><i class="bi bi-check2 text-accent me-2"></i>Avaliações periódicas</li>
+            <li><i class="bi bi-check2 text-accent me-2"></i>Acesso completo às aulas</li>
+            <li><i class="bi bi-check2 text-accent me-2"></i>Desconto no personal</li>
+          </ul>
+          <a href="/cadastro" class="btn btn-outline-accent w-100 mt-auto">Contratar</a>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 col-xl">
+        <div class="plan-card plan-card--premium">
+          <div class="plan-badge">PREMIUM</div>
+          <div class="plan-name">Premium</div>
+          <div class="plan-desc">A experiência completa da Monster Fitness com acompanhamento total.</div>
+          <ul class="plan-features">
+            <li><i class="bi bi-check2 text-accent me-2"></i>Personal exclusivo</li>
+            <li><i class="bi bi-check2 text-accent me-2"></i>Treino individualizado</li>
+            <li><i class="bi bi-check2 text-accent me-2"></i>Acomp. nutricional</li>
+            <li><i class="bi bi-check2 text-accent me-2"></i>Área VIP Recovery</li>
+          </ul>
+          <a href="/cadastro" class="btn btn-accent w-100 mt-auto">Contratar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORÁRIOS -->
+<section class="section-dark py-5 py-lg-6" id="horarios">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-tag">Programação</span>
+      <h2 class="section-title">Horários das<br/><span class="text-accent">aulas coletivas</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="schedule-card">
+          <div class="schedule-icon"><i class="bi bi-music-note-beamed text-accent fs-3"></i></div>
+          <h5>Fit Dance</h5>
+          <div class="schedule-days">Seg, Qua e Sex</div>
+          <div class="schedule-time">19h às 20h</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="schedule-card">
+          <div class="schedule-icon"><i class="bi bi-disc text-accent fs-3"></i></div>
+          <h5>Zumba</h5>
+          <div class="schedule-days">Ter e Qui</div>
+          <div class="schedule-time">18h às 19h</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="schedule-card schedule-card--highlight">
+          <div class="schedule-icon"><i class="bi bi-lightning-charge text-accent fs-3"></i></div>
+          <h5>Funcional</h5>
+          <div class="schedule-days">Seg a Sáb</div>
+          <div class="schedule-time">Manhã & Noite</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="schedule-card">
+          <div class="schedule-icon"><i class="bi bi-bicycle text-accent fs-3"></i></div>
+          <h5>Bike Indoor</h5>
+          <div class="schedule-days">Seg, Qua e Sex</div>
+          <div class="schedule-time">06h e 20h</div>
+        </div>
+      </div>
+    </div>
+    <p class="text-center mt-4" style="color: var(--mf-gray);">A musculação e o cardio funcionam todos os dias da semana, nos horários de funcionamento da academia.</p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section py-5 py-lg-6">
+  <div class="container text-center">
+    <svg width="48" height="84" viewBox="0 0 48 84" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-3" aria-hidden="true">
+      <polygon points="32,2 12,42 24,42 22,82 38,46 26,46" fill="#39FF14" opacity="0.9"/>
+    </svg>
+    <h2 class="cta-title">Pronto para transformar<br/><span class="text-accent">seu corpo?</span></h2>
+    <p class="cta-sub mb-4">Faça sua matrícula agora e comece sua jornada na Monster Fitness.</p>
+    <a href="/cadastro" class="btn btn-accent btn-lg me-3">Fazer Matrícula</a>
+    <a href="/login" class="btn btn-outline-light btn-lg">Já sou aluno</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="mf-footer py-5">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-4">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <svg width="30" height="30" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <polygon points="20,2 10,20 17,20 16,34 26,16 19,16" fill="#39FF14"/>
+          </svg>
+          <span class="brand-text fs-5">MONSTER <span class="brand-accent">FITNESS</span></span>
+        </div>
+        <p class="footer-desc">Unindo treino pesado, conforto e acompanhamento profissional em um só lugar.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 class="footer-heading">Academia</h6>
+        <ul class="footer-links">
+          <li><a href="#sobre">Sobre nós</a></li>
+          <li><a href="#estrutura">Estrutura</a></li>
+          <li><a href="#equipe">Equipe</a></li>
+          <li><a href="#planos">Planos</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 class="footer-heading">Conta</h6>
+        <ul class="footer-links">
+          <li><a href="/cadastro">Cadastro</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/matricula">Matrícula</a></li>
+          <li><a href="/treino">Meu Treino</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h6 class="footer-heading">Funcionamento</h6>
+        <p class="footer-desc">Segunda a Sexta: 06h – 22h<br/>Sábado: 07h – 20h<br/>Domingo: 08h – 14h</p>
+        <div class="d-flex gap-3 mt-3">
+          <a href="#" class="footer-social" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="footer-social" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="footer-social" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider mt-4" />
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <p class="footer-copy mb-0">© 2025 Monster Fitness. Todos os direitos reservados.</p>
+      <p class="footer-copy mb-0">Fundada por Leonardo Vasconcellos</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/main.js"></script>
+</body>
+</html>
