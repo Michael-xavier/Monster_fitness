@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Monster Fitness</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+</head>
+<body>
+
+<nav class="navbar navbar-dark mf-navbar fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <polygon points="20,2 10,20 17,20 16,34 26,16 19,16" fill="#39FF14"/>
+      </svg>
+      <span class="brand-text">MONSTER <span class="brand-accent">FITNESS</span></span>
+    </a>
+    <div class="d-flex align-items-center gap-3">
+      <span class="text-muted d-none d-sm-block" style="font-size:0.8rem;" id="userNameNav">Carregando...</span>
+      <button class="btn btn-outline-accent btn-sm" onclick="logout()">Sair</button>
+    </div>
+  </div>
+</nav>
+
+<section class="dashboard-section">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
+      <div>
+        <div class="dash-welcome" id="dashWelcome">Olá, Atleta!</div>
+        <div class="dash-subtitle" id="dashSubtitle">Plano: — &nbsp;|&nbsp; Objetivo: —</div>
+      </div>
+      <div class="d-flex gap-2 flex-wrap">
+        <button class="btn btn-outline-accent btn-sm" onclick="regenerateWorkout()">
+          <i class="bi bi-arrow-clockwise me-1"></i>Novo treino
+        </button>
+        <a href="/matricula" class="btn btn-accent btn-sm">Meu Perfil</a>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-lg-3">
+        <div class="dash-card">
+          <div class="dash-card-label">Plano</div>
+          <div class="dash-card-value text-accent" id="statPlano">—</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="dash-card">
+          <div class="dash-card-label">Objetivo</div>
+          <div class="dash-card-value" id="statObjetivo" style="font-size:1.1rem;">—</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="dash-card">
+          <div class="dash-card-label">Nível</div>
+          <div class="dash-card-value" id="statNivel" style="font-size:1.1rem;">—</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="dash-card">
+          <div class="dash-card-label">Membro desde</div>
+          <div class="dash-card-value" id="statDesde" style="font-size:1rem;">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Trainer card -->
+      <div class="col-lg-4">
+        <div class="dash-card h-100">
+          <div class="dash-card-label mb-3">Seu Personal Indicado</div>
+          <div class="trainer-profile-card">
+            <div class="d-flex align-items-center gap-3 mb-3">
+              <div class="trainer-avatar-lg" id="trainerAvatar">??</div>
+              <div>
+                <div class="trainer-name" id="trainerName">Carregando...</div>
+                <div class="trainer-spec" id="trainerSpec">—</div>
+              </div>
+            </div>
+            <div style="font-size:0.8rem; color: var(--mf-gray); line-height:1.6;">
+              Personal selecionado com base no seu objetivo e nível de experiência.
+            </div>
+            <div class="mt-3 pt-3" style="border-top:1px solid var(--mf-black-border);">
+              <div style="font-size:0.72rem; color:var(--mf-gray); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.4rem;">Especialidade</div>
+              <div class="badge-sets" id="trainerSpec2">—</div>
+            </div>
+          </div>
+
+          <div class="mt-3">
+            <div class="dash-card-label mb-2">Tipo de treino</div>
+            <div class="d-flex align-items-center gap-2">
+              <div class="badge-sets" id="workoutTypeBadge">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workout table -->
+      <div class="col-lg-8">
+        <div class="dash-card">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="dash-card-label">Treino de hoje</div>
+            <div id="workoutDay" style="font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; color:var(--mf-green);">—</div>
+          </div>
+          <div id="workoutTableWrap">
+            <div class="text-center py-4" style="color:var(--mf-gray);">
+              <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Gerando seu treino...
+            </div>
+          </div>
+        </div>
+
+        <!-- Delete account -->
+        <div class="dash-card mt-4" style="border-color:rgba(220,53,69,0.2);">
+          <div class="dash-card-label mb-2" style="color:#ff6b6b;">Zona de perigo</div>
+          <p style="font-size:0.8rem; color:var(--mf-gray); margin-bottom:1rem;">A exclusão da conta é permanente e remove todos os seus dados.</p>
+          <button class="btn btn-sm" style="border:1px solid rgba(220,53,69,0.5); color:#ff6b6b; font-size:0.8rem; border-radius:2px;" onclick="confirmDelete()">
+            <i class="bi bi-trash me-1"></i>Excluir minha conta
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Delete Modal -->
+<div id="deleteOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center;">
+  <div style="background:var(--mf-black-card); border:1px solid rgba(220,53,69,0.4); border-radius:6px; padding:2rem; max-width:400px; width:90%; margin:auto;">
+    <h5 style="font-family:'Barlow Condensed',sans-serif; font-weight:800; color:var(--mf-white); margin-bottom:0.5rem;">Confirmar exclusão</h5>
+    <p style="font-size:0.85rem; color:var(--mf-gray); margin-bottom:1.5rem;">Digite sua senha para confirmar a exclusão permanente da conta.</p>
+    <input type="password" class="form-control mb-3" id="deletePassword" placeholder="Sua senha atual" />
+    <div id="deleteAlert" class="alert-mf d-none mb-3" role="alert"></div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-outline-accent btn-sm" onclick="closeDelete()">Cancelar</button>
+      <button class="btn btn-sm" style="background:#dc3545; color:#fff; border:none; border-radius:2px; font-size:0.82rem; font-weight:700; padding:0.4rem 1rem;" onclick="deleteAccount()">Excluir conta</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const OBJ_MAP  = {hipertrofia:'Hipertrofia',emagrecimento:'Emagrecimento',condicionamento:'Condicionamento',forca:'Força',saude:'Bem-estar',funcional:'Funcional'};
+const PLANO_MAP= {mensal:'Mensal',trimestral:'Trimestral',semestral:'Semestral',anual:'Anual',premium:'Premium'};
+const NIVEL_MAP= {iniciante:'Iniciante',intermediario:'Intermediário',avancado:'Avançado'};
+
+let userData = null;
+
+async function loadDashboard() {
+  try {
+    const res = await fetch('/api/me');
+    if (!res.ok) { window.location.href = '/login'; return; }
+    const data = await res.json();
+    userData = data.user;
+    renderStats();
+    await loadPersonalAndWorkout();
+  } catch {
+    window.location.href = '/login';
+  }
+}
+
+function renderStats() {
+  const u = userData;
+  const nome = u.nome ? u.nome.split(' ')[0] : 'Atleta';
+  document.getElementById('dashWelcome').textContent = `Olá, ${nome}! 💪`;
+  document.getElementById('userNameNav').textContent = nome;
+  document.getElementById('dashSubtitle').textContent =
+    `Plano: ${PLANO_MAP[u.plano]||'—'} | Objetivo: ${OBJ_MAP[u.objetivo]||'—'}`;
+  document.getElementById('statPlano').textContent   = PLANO_MAP[u.plano]  || '—';
+  document.getElementById('statObjetivo').textContent= OBJ_MAP[u.objetivo] || '—';
+  document.getElementById('statNivel').textContent   = NIVEL_MAP[u.nivel]  || '—';
+  const dt = u.criado_em
+    ? new Date(u.criado_em).toLocaleDateString('pt-BR',{month:'short',year:'numeric'})
+    : '—';
+  document.getElementById('statDesde').textContent = dt;
+}
+
+async function loadPersonalAndWorkout() {
+  try {
+    const res = await fetch('/api/personal/meu');
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    renderPersonal(data.personal);
+    renderWorkout(data.treino, data.objetivo);
+  } catch {
+    document.getElementById('trainerName').textContent = 'Erro ao carregar';
+    document.getElementById('workoutTableWrap').innerHTML =
+      '<p style="color:var(--mf-gray);font-size:0.85rem;">Não foi possível carregar o treino.</p>';
+  }
+}
+
+function renderPersonal(p) {
+  const initials = p.nome.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+  document.getElementById('trainerAvatar').textContent = initials;
+  document.getElementById('trainerName').textContent   = p.nome;
+  document.getElementById('trainerSpec').textContent   = p.especialidade;
+  document.getElementById('trainerSpec2').textContent  = p.especialidade;
+}
+
+function renderWorkout(treino, objetivo) {
+  document.getElementById('workoutTypeBadge').textContent = OBJ_MAP[objetivo] || objetivo;
+  document.getElementById('workoutDay').textContent = treino.dia;
+
+  let html = '<table class="workout-table"><thead><tr><th>Exercício</th><th>Séries/Reps</th><th>Carga</th><th>Descanso</th></tr></thead><tbody>';
+  treino.exercicios.forEach(([ex, sr, carga, desc]) => {
+    html += `<tr><td>${ex}</td><td><span class="badge-sets">${sr}</span></td><td>${carga}</td><td>${desc}</td></tr>`;
+  });
+  html += '</tbody></table>';
+  document.getElementById('workoutTableWrap').innerHTML = html;
+}
+
+async function regenerateWorkout() {
+  document.getElementById('workoutTableWrap').innerHTML =
+    '<div class="text-center py-3" style="color:var(--mf-gray);"><span class="spinner-border spinner-border-sm me-2"></span>Gerando novo treino...</div>';
+  try {
+    const res = await fetch('/api/treino/novo');
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    renderWorkout(data.treino, data.objetivo);
+  } catch {
+    document.getElementById('workoutTableWrap').innerHTML =
+      '<p style="color:var(--mf-gray);font-size:0.85rem;">Erro ao gerar treino.</p>';
+  }
+}
+
+function confirmDelete() { document.getElementById('deleteOverlay').style.display = 'flex'; }
+function closeDelete() {
+  document.getElementById('deleteOverlay').style.display = 'none';
+  document.getElementById('deletePassword').value = '';
+  document.getElementById('deleteAlert').classList.add('d-none');
+}
+
+async function deleteAccount() {
+  const pwd = document.getElementById('deletePassword').value;
+  const alertEl = document.getElementById('deleteAlert');
+  if (!pwd) { alertEl.textContent='Digite sua senha.'; alertEl.classList.remove('d-none'); return; }
+  try {
+    const res = await fetch('/api/delete-account', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pwd })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      window.location.href = '/?deleted=1';
+    } else {
+      alertEl.textContent = data.message || 'Senha incorreta.';
+      alertEl.classList.remove('d-none');
+    }
+  } catch {
+    alertEl.textContent = 'Erro. Tente novamente.';
+    alertEl.classList.remove('d-none');
+  }
+}
+
+async function logout() {
+  await fetch('/api/logout', { method: 'POST' });
+  window.location.href = '/';
+}
+
+loadDashboard();
+</script>
+</body>
+</html>

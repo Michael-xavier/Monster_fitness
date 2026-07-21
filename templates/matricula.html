@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minha Matrícula — Monster Fitness</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/main.css" />
+</head>
+<body>
+
+<nav class="navbar navbar-dark mf-navbar fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <polygon points="20,2 10,20 17,20 16,34 26,16 19,16" fill="#39FF14"/>
+      </svg>
+      <span class="brand-text">MONSTER <span class="brand-accent">FITNESS</span></span>
+    </a>
+    <div class="d-flex gap-2">
+      <a href="/dashboard" class="btn btn-outline-accent btn-sm"><i class="bi bi-arrow-left me-1"></i>Dashboard</a>
+      <button class="btn btn-sm" style="border:1px solid var(--mf-black-border); color:var(--mf-gray); border-radius:2px; font-size:0.8rem;" onclick="logout()">Sair</button>
+    </div>
+  </div>
+</nav>
+
+<section class="dashboard-section">
+  <div class="container">
+
+    <div class="mb-4">
+      <div class="dash-welcome">Minha Matrícula</div>
+      <div class="dash-subtitle">Detalhes e gerenciamento do seu plano</div>
+    </div>
+
+    <div id="alertMsg" class="alert-mf d-none" role="alert"></div>
+    <div id="successMsg" class="alert-mf-success d-none" role="status"></div>
+
+    <!-- Cartão da matrícula -->
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="dash-card" id="matriculaCard">
+          <div class="text-center py-4" style="color:var(--mf-gray);">
+            <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>Carregando...
+          </div>
+        </div>
+      </div>
+
+      <!-- Editar perfil -->
+      <div class="col-lg-7">
+        <div class="dash-card">
+          <div class="dash-card-label mb-3">Editar perfil</div>
+          <form id="editForm">
+            <input type="hidden" id="csrfToken" />
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label class="form-label">Nome completo</label>
+                <input type="text" class="form-control" id="editNome" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label">Telefone</label>
+                <input type="tel" class="form-control" id="editTelefone" />
+              </div>
+              <div class="col-12">
+                <label class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="editEmail" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label">Objetivo</label>
+                <select class="form-select" id="editObjetivo">
+                  <option value="hipertrofia">Hipertrofia</option>
+                  <option value="emagrecimento">Emagrecimento</option>
+                  <option value="condicionamento">Condicionamento</option>
+                  <option value="forca">Força</option>
+                  <option value="saude">Saúde</option>
+                  <option value="funcional">Funcional</option>
+                </select>
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label">Plano</label>
+                <select class="form-select" id="editPlano">
+                  <option value="mensal">Mensal</option>
+                  <option value="trimestral">Trimestral</option>
+                  <option value="semestral">Semestral</option>
+                  <option value="anual">Anual</option>
+                  <option value="premium">Premium</option>
+                </select>
+              </div>
+            </div>
+            <div class="mt-4">
+              <button type="submit" class="btn-accent-full" style="max-width:180px" id="saveBtn">
+                <span id="saveText">Salvar alterações</span>
+                <span id="saveSpinner" class="d-none"><span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>Salvando...</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+async function loadUser() {
+  try {
+    const res = await fetch('/api/me');
+    if (!res.ok) { window.location.href='/login'; return; }
+    const { user } = await res.json();
+    renderMatricula(user);
+    document.getElementById('editNome').value      = user.nome || '';
+    document.getElementById('editTelefone').value  = user.telefone || '';
+    document.getElementById('editEmail').value     = user.email || '';
+    document.getElementById('editObjetivo').value  = user.objetivo || 'hipertrofia';
+    document.getElementById('editPlano').value     = user.plano || 'mensal';
+  } catch { window.location.href='/login'; }
+}
+
+async function fetchCsrf() {
+  try {
+    const r = await fetch('/api/csrf-token');
+    const d = await r.json();
+    document.getElementById('csrfToken').value = d.token || '';
+  } catch {}
+}
+
+function renderMatricula(u) {
+  const planoLabels = { mensal:'Mensal', trimestral:'Trimestral', semestral:'Semestral', anual:'Anual', premium:'Premium' };
+  const objLabels   = { hipertrofia:'Hipertrofia', emagrecimento:'Emagrecimento', condicionamento:'Condicionamento', forca:'Força', saude:'Bem-estar', funcional:'Funcional' };
+  const nivelLabels = { iniciante:'Iniciante', intermediario:'Intermediário', avancado:'Avançado' };
+  const desde = u.criado_em ? new Date(u.criado_em).toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}) : '—';
+  const initials = (u.nome||'?').split(' ').map(p=>p[0]).slice(0,2).join('').toUpperCase();
+
+  document.getElementById('matriculaCard').innerHTML = `
+    <div class="text-center mb-4">
+      <div style="width:80px;height:80px;background:var(--mf-green-dim);border:2px solid rgba(57,255,20,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:800;color:var(--mf-green);margin:0 auto 1rem;">${initials}</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;color:var(--mf-white);">${u.nome}</div>
+      <div style="font-size:0.8rem;color:var(--mf-gray);">${u.email}</div>
+    </div>
+    <div style="border-top:1px solid var(--mf-black-border);padding-top:1rem;">
+      ${row('bi-lightning-charge','Plano',`<span class="badge-sets">${planoLabels[u.plano]||u.plano}</span>`)}
+      ${row('bi-bullseye','Objetivo',objLabels[u.objetivo]||u.objetivo||'—')}
+      ${row('bi-bar-chart','Nível',nivelLabels[u.nivel]||u.nivel||'—')}
+      ${row('bi-calendar3','Membro desde',desde)}
+      ${row('bi-check-circle','Status','<span style="color:var(--mf-green);font-weight:600;">Ativo</span>')}
+    </div>`;
+}
+
+function row(icon, label, val) {
+  return `<div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid rgba(38,38,38,0.6);">
+    <span style="font-size:0.78rem;color:var(--mf-gray);"><i class="bi ${icon} me-2 text-accent"></i>${label}</span>
+    <span style="font-size:0.82rem;color:var(--mf-white);">${val}</span></div>`;
+}
+
+document.getElementById('editForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const alert = document.getElementById('alertMsg');
+  const success = document.getElementById('successMsg');
+  alert.classList.add('d-none'); success.classList.add('d-none');
+
+  const btn = document.getElementById('saveBtn');
+  document.getElementById('saveText').classList.add('d-none');
+  document.getElementById('saveSpinner').classList.remove('d-none');
+  btn.disabled = true;
+
+  const payload = {
+    nome:     document.getElementById('editNome').value.trim(),
+    telefone: document.getElementById('editTelefone').value.trim(),
+    email:    document.getElementById('editEmail').value.trim(),
+    objetivo: document.getElementById('editObjetivo').value,
+    plano:    document.getElementById('editPlano').value,
+  };
+
+  try {
+    const csrf = document.getElementById('csrfToken').value;
+    await fetchCsrf();
+    const res = await fetch('/api/me/update', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': document.getElementById('csrfToken').value },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      success.textContent = 'Dados atualizados com sucesso!';
+      success.classList.remove('d-none');
+      loadUser();
+    } else {
+      alert.textContent = data.message || 'Erro ao salvar.';
+      alert.classList.remove('d-none');
+    }
+  } catch {
+    alert.textContent = 'Erro de conexão.';
+    alert.classList.remove('d-none');
+  } finally {
+    document.getElementById('saveText').classList.remove('d-none');
+    document.getElementById('saveSpinner').classList.add('d-none');
+    btn.disabled = false;
+  }
+});
+
+async function logout() {
+  await fetch('/api/logout', { method: 'POST' });
+  window.location.href = '/';
+}
+
+loadUser();
+fetchCsrf();
+</script>
+</body>
+</html>

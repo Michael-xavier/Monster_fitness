@@ -1,0 +1,73 @@
+# ─── SEGREDOS — NUNCA no git ────────────────────────────────────────────
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env*.local
+*.env
+
+# Chaves privadas e certificados
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cert
+
+# Configurações com credenciais
+firebase-adminsdk*.json
+service-account*.json
+google-credentials*.json
+
+# ─── SOURCE MAPS — exposição de código-fonte ─────────────────────────────
+*.map
+*.js.map
+*.css.map
+
+# ─── DEPENDÊNCIAS ─────────────────────────────────────────────────────────
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+
+# ─── BUILD OUTPUTS ────────────────────────────────────────────────────────
+dist/
+build/
+.next/
+out/
+*.egg-info/
+
+# ─── LOGS (podem conter dados sensíveis) ─────────────────────────────────
+*.log
+logs/
+*.log.*
+npm-debug.log*
+pip-log.txt
+
+# ─── BANCO DE DADOS LOCAL ─────────────────────────────────────────────────
+*.sqlite
+*.sqlite3
+*.db
+*.sql.backup
+
+# ─── DOCKER VOLUMES locais ────────────────────────────────────────────────
+mf_db_data/
+
+# ─── IDE ──────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ─── TESTES / COBERTURA ───────────────────────────────────────────────────
+.coverage
+htmlcov/
+.pytest_cache/
